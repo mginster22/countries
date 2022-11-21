@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import CardsSection from "./components/CardsSection";
-import Controls from "./components/Controls";
+
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Home from "./pages/Home";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
+  const [countries, setCountries] = useState([]);
+
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
@@ -14,8 +17,12 @@ const App = () => {
     <>
       <Header theme={theme} setTheme={setTheme} />
       <Main>
-        <Controls/>
-        <CardsSection/>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home countries={countries} setCountries={setCountries} />}
+          />
+        </Routes>
       </Main>
     </>
   );

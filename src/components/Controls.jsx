@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Container } from "./Container";
 import { CustomSelect } from "./CustomSelect";
@@ -6,40 +6,32 @@ import Search from "./Search";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
+  justify-content: space-between;
 `;
-
 const options = [
-  { value: "Africa", label: "Africa" },
-  { value: "Amerika", label: "Amerika" },
-  { value: "Europe", label: "Europe" },
-  { value: "Asia", label: "Asia" },
-  { value: "Oceania", label: "Oceania" },
-];
+  {value:'Africa',label:'Africa'},
+  {value:'Europe',label:'Europe'},
+  {value:'America',label:'America'},
+  {value:'Asia',label:'Asia'},
+  {value:'Oceania',label:'Oceania'},
+]
 
-const Controls = () => {
+const Controls = ({ handleSearch }) => {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
+
+  useEffect(() => {
+    const regionValue = region?.value || "";
+    handleSearch(search, regionValue);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, region]);
 
   return (
     <Container>
       <Wrapper>
-        <Search search={search} setSearch={setSearch} />
-        <CustomSelect
-          options={options}
-          value={region}
-          onChange={(e)=>setRegion(e.target.value)}
-          isClearable
-          isSearchable={false}
-          placeholder='Filter your region'
-        />
+        <Search search={search} onSearch={setSearch} />
+        <CustomSelect value={region} onChange={setRegion} options={options} />
       </Wrapper>
     </Container>
   );

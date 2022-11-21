@@ -1,15 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-const MainEl = styled.div`
-margin:40px 0;
-`
+import React from "react";
 
-const Main = ({children}) => {
-  return (
-    <MainEl>
-      {children}
-    </MainEl>
-  );
-}
+const Main = ({ children }) => {
+  return <div>{children}</div>;
+};
 
 export default Main;

@@ -3,29 +3,16 @@ import Select from "react-select";
 
 export const CustomSelect = styled(Select).attrs({
   styles: {
-    control: (provided) => ({
-      ...provided,
-      border: "none",
-      outline: "none",
-      boxShadow: "var(--shadow)",
-      backgroundColor:'var(--bg-color)',
-      borderRadius:'var(--radii)'
+    control: () => ({
+      display: "flex",
+      border:'1px solid black'
     }),
-    option: (provided, state) => ({
-      ...provided,
-      color:'var(--color-text)',
-      backgroundColor:state.isSelected?'var(--bg-color)':'var(--bg-ui-inp)'
+
+    option: () => ({
+      cursor:'pointer'
     }),
   },
 })`
-  max-width: 300px;
+  max-width: 200px;
   width: 100%;
-  
-  & * {
-    color:var(--color-text) !important;
-  }
- 
-  @media (max-height:768px){
-    max-width:220px;
-  }
 `;

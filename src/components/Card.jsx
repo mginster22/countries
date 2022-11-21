@@ -1,34 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const CardEl=styled.article`
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-max-width:230px;
-width:100%;
-border:1px solid black;
-`
-const Title=styled.h4`
-font-size:var(--fs-s);
-color:var(--color-text);
-`
+const CardCountry = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 220px;
+  width:100%;
+  border: 1px solid;
+`;
+const Title = styled.p`
+  margin-top: auto;
+`;
+const Flag = styled.img`
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+`;
+const Wrapper = styled.div``;
 
-const Avatar =styled.img.attrs({
-  
-})`
-
-`
-
-const Card = ({el}) => {
+const Card = ({ name, info, img }) => {
   return (
-    <CardEl>
-      <Avatar src={el.flag}/>
-      <Title>{el.name}</Title>
-      <Title>{el.region}</Title>
-      <Title>Area {el.area}</Title>
-    </CardEl>
+    <CardCountry>
+      <Flag src={img} />
+      <Wrapper>
+        {info.map(({ title, description }) => (
+          <Title key={title}>
+            {title}:{description}
+          </Title>
+        ))}
+      </Wrapper>
+    </CardCountry>
   );
-}
+};
 
 export default Card;
